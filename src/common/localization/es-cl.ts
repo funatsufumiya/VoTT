@@ -255,6 +255,9 @@ export const spanish: IAppStrings = {
             nextExpectedFrame: {
                 tooltip: "Siguiente marco",
             },
+            makeCurrentFrameUnvisited: {
+                tooltip: "Hacer que el marco actual no sea visitado",
+            },
         },
         help: {
             title: "Abrir/cerrar el menú de ayuda",

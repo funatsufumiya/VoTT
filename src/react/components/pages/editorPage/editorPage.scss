@@ -188,7 +188,8 @@
 
   .video-timeline {
     &-tagged,
-    &-visited {
+    &-visited,
+    &-notvisited {
       width: 2px;
       position: absolute;
       height: 100%;
@@ -203,6 +204,11 @@
 
     &-visited {
       background-color: yellow;
+      z-index: 1;
+    }
+
+    &-notvisited {
+      background-color: #484848;
       z-index: 1;
     }
   }

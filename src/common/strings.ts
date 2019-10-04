@@ -252,6 +252,9 @@ export interface IAppStrings {
             previousVisitedFrame: {
                 tooltip: string,
             },
+            makeCurrentFrameUnvisited: {
+                tooltip: string,
+            },
         }
         help: {
             title: string;

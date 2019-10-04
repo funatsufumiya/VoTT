@@ -253,6 +253,9 @@ export const english: IAppStrings = {
             nextExpectedFrame: {
                 tooltip: "Next Frame",
             },
+            makeCurrentFrameUnvisited: {
+                tooltip: "Make Current Frame Unvisited",
+            },
         },
         help: {
             title: "Toggle Help Menu",

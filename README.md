@@ -262,6 +262,8 @@ When the video playback bar is present, it allows the following shortcuts to sel
 * H - Previous Visited Frame
 * L - Next Visited Frame
 
+( U - Make Current Frame Unvisited )
+
 #### Mouse Controls
 
 * Two-point mode - Hold down Ctrl while creating a region

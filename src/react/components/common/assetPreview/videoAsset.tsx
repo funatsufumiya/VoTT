@@ -134,6 +134,13 @@ export class VideoAsset extends React.Component<IVideoAssetProps> {
                             icon={"fas fa-step-forward"}
                         >
                         </CustomVideoPlayerKeyBinding>
+                        <CustomVideoPlayerKeyBinding order={8.5}
+                            accelerators={["U", "u"]}
+                            tooltip={strings.editorPage.videoPlayer.makeCurrentFrameUnvisited.tooltip}
+                            onClick={this.makeCurrentFrameUnvisited}
+                            icon={"fas fa-trash-alt"}
+                        >
+                        </CustomVideoPlayerKeyBinding>
                     </ControlBar>
                 }
             </Player >
@@ -161,6 +168,23 @@ export class VideoAsset extends React.Component<IVideoAssetProps> {
         if (this.props.timestamp !== prevProps.timestamp) {
             this.seekToTime(this.props.timestamp);
         }
+    }
+
+    /**
+     * Bound to the "Make Current Frame Unvisited" key binding
+     * Make current frame unvisited
+     */
+    private makeCurrentFrameUnvisited = () => {
+        const currentTime = this.getVideoPlayerState().currentTime;
+        const currentFrame:IAsset = this.props.childAssets
+            .find((asset) => asset.timestamp == currentTime);
+
+        if(currentFrame){
+            currentFrame.state = AssetState.NotVisited;
+        }
+
+        this.movePreviousTaggedFrame();
+        this.moveNextTaggedFrame();
     }
 
     /**
@@ -193,7 +217,7 @@ export class VideoAsset extends React.Component<IVideoAssetProps> {
     }
 
     /**
-     * Bound to the "Previous Visited Frame" button
+     * Bound to the "Previous Visited Frame" key binding
      * Seeks the user to the previous visited video frame
      */
     private movePreviousVisitedFrame = () => {
@@ -208,7 +232,7 @@ export class VideoAsset extends React.Component<IVideoAssetProps> {
     }
 
     /**
-     * Bound to the "Next Visited Frame" button
+     * Bound to the "Next Visited Frame" key binding
      * Seeks the user to the next visited video frame
      */
     private moveNextVisitedFrame = () => {
@@ -418,7 +442,7 @@ export class VideoAsset extends React.Component<IVideoAssetProps> {
      * @param videoDuration The total video duration
      */
     private renderChildAssetMarker = (childAsset: IAsset, videoDuration: number) => {
-        const className = childAsset.state === AssetState.Tagged ? "video-timeline-tagged" : "video-timeline-visited";
+        const className = childAsset.state === AssetState.Tagged ? "video-timeline-tagged" : (childAsset.state === AssetState.Visited ? "video-timeline-visited": "video-timeline-notvisited");
         const childPosition: number = (childAsset.timestamp / videoDuration);
         const style = { left: `${childPosition * 100}%` };
 
